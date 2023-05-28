@@ -1,6 +1,9 @@
-# Turn on the Rewrite Engine
 RewriteEngine On
 RewriteBase /
+
+# Redirect URLs containing the "fbid" parameter
+RewriteCond %{QUERY_STRING} (^|&)fbid= [NC]
+RewriteRule ^ %{REQUEST_URI}? [R=301,L]
 
 # Handle the link creation bits
 RewriteRule ^create.*$ /index.php?create=true [QSA,L]
